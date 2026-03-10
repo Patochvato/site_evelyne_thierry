@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Location bungalow | Evelyne & Thierry</title>
+  <meta name="description" content="Site de location d’un bungalow de charme avec piscine chauffée." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+  <header class="header">
+    <nav class="nav container">
+      <a class="logo" href="#accueil">Chez Evelyne & Thierry</a>
+      <button class="nav-toggle" aria-label="Ouvrir le menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#apropos">À propos</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#tarifs">Tarifs & services</a></li>
+        <li><a href="#disponibilites">Disponibilités</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="accueil" class="hero">
+      <div class="overlay"></div>
+      <div class="hero-content container">
+        <h1>Logement de charme avec piscine chauffée</h1>
+        <p>Une parenthèse nature entre mer et montagne.</p>
+        <a href="#contact" class="btn">Réserver</a>
+      </div>
+    </section>
+
+    <section id="apropos" class="section container">
+      <h2>À propos de ce logement</h2>
+      <p>Sur la côte ouest entre mer et montagne, dans un grand jardin tropical luxuriant dominant l'océan, logement nature avec entrée indépendante pour 2 personnes. Toilettes sèches et douche extérieure sous les papyrus géants.Vous pourrez préparer vos repas et manger dans la cuisine au milieu de la végétation, sur la terrasse avec vue sur mer... ou ailleurs dans le jardin. Quartier très calme.</p>
+      <p>Vous disposerez d'une terrasse avec vue sur mer équipée d'une table et 2 chaises. La piscine (au sel) est chauffée à 28°. Elle surplombe le jardin et offre une belle vue sur l'océan Indien (top pour les couchers de soleil). Chiliennes et bains de soleil à disposition.</p>
+    </section>
+
+    <section id="galerie" class="section section-alt">
+      <div class="container">
+        <h2>Galerie photos</h2>
+        <div class="slider" tabindex="0" aria-label="Diaporama photos">
+          <button class="slider-btn prev" aria-label="Image précédente">❮</button>
+          <div class="slides" id="slides"></div>
+          <button class="slider-btn next" aria-label="Image suivante">❯</button>
+          <div class="slider-dots" id="slider-dots" aria-label="Navigation du diaporama"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tarifs" class="section container">
+      <h2>Tarifs & services</h2>
+      <p class="service-note">Nous pouvons vous préparer le petit déjeuner moyennant 7,50€/pers (café, thé, chocolat, jus de fruit ou kéfir maison, confitures maison, pain, brioche, fruits de saison). Servi à partir de 7h30. Merci de nous prévenir au minimum la veille.</p>
+      <div class="grid-2">
+        <article class="card">
+          <h3>Tarifs</h3>
+          <ul>
+            <li>Nuitée (2 pers.) : à partir de 95 €</li>
+            <li>Petit déjeuner : 7,50 €/pers</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Services</h3>
+          <ul>
+            <li>Location de vélos électriques</li>
+            <li>Prêt palmes-masque-tuba</li>
+            <li>Jeux de société</li>
+          </ul>
+        </article>
+      </div>
+      <div class="map-wrap">
+        <iframe
+  title="Carte"
+  src="https://www.google.com/maps?q=R845%2B47%20Saint-Leu%2C%20La%20R%C3%A9union&z=16&output=embed"
+  loading="lazy">
+</iframe>
+      </div>
+      <p class="service-note">Acces des voyageurs : Plusieurs lignes de bus passent dans la rue.</p>
+    </section>
+
+    <section id="disponibilites" class="section section-alt" data-ical-url="https://www.airbnb.fr/calendar/ical/46997134.ics?s=c8d07ecf0d14dbadcc77f78fdbb9bda7">
+      <div class="container">
+        <h2>Calendrier des disponibilités</h2>
+        <p id="calendar-status" class="calendar-status">Chargement automatique des disponibilités...</p>
+        <div id="calendar-cards" class="calendar-cards"></div>
+        <p class="calendar-legend"><span class="badge ok">Disponible</span> <span class="badge warn">Quelques dates</span> <span class="badge no">Complet</span></p>
+      </div>
+    </section>
+
+    <section id="contact" class="section container">
+      <h2>Contact</h2>
+      <form id="contact-form" class="contact-form" action="https://formsubmit.co/thierry.boisselier974@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Nouvelle demande de reservation - Site Evelyne & Thierry" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_autoresponse" value="Merci pour votre message. Nous avons bien recu votre demande de reservation et nous revenons vers vous rapidement." />
+        <input type="text" name="_honey" class="hp-field" tabindex="-1" autocomplete="off" />
+        <input type="text" name="nom" placeholder="Nom" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="tel" name="telephone" placeholder="Telephone" pattern="[0-9+ ]{8,20}" />
+        <input type="text" name="dates" placeholder="Dates souhaitees (ex: 12/04 au 16/04)" />
+        <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
+        <label class="consent">
+          <input type="checkbox" name="consentement" required />
+          J'accepte d'etre recontacte uniquement pour ma demande de reservation.
+        </label>
+        <button id="contact-submit" type="submit" class="btn">Envoyer</button>
+        <p id="contact-feedback" class="contact-feedback" role="status" aria-live="polite"></p>
+      </form>
+      <p class="privacy-note">Les informations transmises via ce formulaire sont utilisees uniquement pour traiter votre demande de reservation. Elles ne sont ni vendues, ni cedees a des tiers.</p>
+      <div class="contact-links">
+        <a class="btn whatsapp-link" href="https://wa.me/262692076752?text=Bonjour%2C%20je%20souhaite%20des%20informations%20pour%20la%20location%20du%20bungalow." target="_blank" rel="noopener noreferrer">WhatsApp: +262 692 07 67 52</a>
+      </div>
+      
+    </section>
+  </main>
+
+  <a class="whatsapp-float" href="https://wa.me/262692076752?text=Bonjour%2C%20je%20souhaite%20des%20informations%20pour%20la%20location%20du%20bungalow." target="_blank" rel="noopener noreferrer" aria-label="Contacter sur WhatsApp">WhatsApp</a>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

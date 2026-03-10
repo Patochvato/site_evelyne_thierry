@@ -1,0 +1,16 @@
+@media (max-width:860px){
+  .grid-2{grid-template-columns:1fr}
+  .calendar-cards{grid-template-columns:1fr}
+  .hero{padding-bottom:0}
+  .hero-content{bottom:4vh;transform:translateX(-50%)}
+  .nav-toggle{display:block}
+  .nav-links{
+    display:none;flex-direction:column;position:absolute;right:4%;top:68px;
+    background:#fff;border:1px solid #e4ebe1;border-radius:10px;padding:.8rem
+  }
+  .nav-links.open{display:flex}
+  .slides{height:280px}
+  .slide{height:280px}
+  .slider-btn{width:34px;height:34px}
+  .whatsapp-float{right:.7rem;bottom:.7rem;padding:.65rem .9rem;font-size:.92rem}
+}

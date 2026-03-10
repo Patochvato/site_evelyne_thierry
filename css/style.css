@@ -1,0 +1,65 @@
+:root{--bg:#f6f8f4;--text:#1f2a1f;--primary:#2f6f5e;--accent:#d8a25e;--white:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.container{width:min(1100px,92%);margin:auto}
+.header{position:fixed;top:0;width:100%;background:#ffffffea;border-bottom:1px solid #e5eae2;z-index:10}
+.nav{min-height:68px;display:flex;align-items:center;justify-content:space-between}
+.logo{text-decoration:none;color:var(--primary);font-weight:700}
+.nav-links{list-style:none;display:flex;gap:1rem}
+.nav-links a{text-decoration:none;color:var(--text)}
+.nav-toggle{display:none;background:none;border:0;font-size:1.4rem}
+.hero{min-height:100vh;background:url("../Photos/Jardin/photo_accueil.jpg") center/cover no-repeat;display:flex;align-items:flex-end;justify-content:center;text-align:center;color:#fff;padding:68px 0 0;position:relative}
+.overlay{position:absolute;inset:0;background:rgba(0,0,0,.15)}
+.hero-content{position:absolute;z-index:1;left:50%;bottom:6vh;transform:translateX(-50%);width:min(1100px,92%)}
+.btn{display:inline-block;margin-top:1rem;background:var(--accent);padding:.7rem 1.1rem;border-radius:999px;text-decoration:none;color:#111;border:0;cursor:pointer}
+.section{padding:5rem 0}
+.section-alt{background:#eef3ec}
+.service-note{margin:.6rem 0 1.2rem;padding:.9rem 1rem;background:#fff;border-left:4px solid var(--accent);border-radius:10px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.card{background:#fff;padding:1rem;border-radius:12px}
+.card ul{padding-left:1.2rem;margin-top:.4rem}
+.card li{margin:.28rem 0}
+.slides{overflow:hidden;border-radius:12px;position:relative;height:460px}
+.slide{width:100%;height:460px;object-fit:cover;display:block;position:absolute;inset:0;opacity:0;transition:opacity .45s ease-in-out;pointer-events:none}
+.slide.active{opacity:1;pointer-events:auto}
+.slider{position:relative}
+.slider:focus-visible{outline:2px solid #d8a25e;outline-offset:4px}
+.slider-btn{position:absolute;top:50%;transform:translateY(-50%);background:#0008;color:#fff;border:0;width:40px;height:40px;border-radius:50%;z-index:4}
+.prev{left:10px}.next{right:10px}
+.slider-dots{display:flex;justify-content:center;gap:.45rem;margin-top:.6rem}
+.slider-dot{width:10px;height:10px;border-radius:50%;border:0;background:#c6d0c6;cursor:pointer}
+.slider-dot.active{background:#2f6f5e;transform:scale(1.12)}
+.map-wrap iframe{width:100%;min-height:320px;border:0;border-radius:12px;margin-top:1rem}
+.calendar{width:100%;background:#fff;border-collapse:collapse;border-radius:12px;overflow:hidden}
+.calendar th,.calendar td{padding:.8rem;border-bottom:1px solid #e9eee7}
+.calendar-status{margin:.4rem 0 .9rem;color:var(--primary)}
+.calendar-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.9rem}
+.calendar-card{background:#fff;border-radius:12px;padding:.9rem;box-shadow:0 6px 16px rgba(0,0,0,.08)}
+.calendar-top{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.calendar-month{font-weight:700;color:#223022}
+.calendar-meter{height:8px;background:#e8eee8;border-radius:999px;overflow:hidden;margin:.65rem 0 .5rem}
+.calendar-fill{height:100%;background:#2f6f5e}
+.calendar-meta{font-size:.88rem;color:#5e6a5e}
+.calendar-details{margin-top:.55rem;font-size:.88rem}
+.calendar-details summary{cursor:pointer;color:#2f6f5e;font-weight:600}
+.calendar-details ul{margin:.45rem 0 0 1rem;padding:0}
+.calendar-dates-empty{margin-top:.55rem;font-size:.86rem;color:#5e6a5e}
+.calendar-legend{margin-top:.8rem;display:flex;gap:.5rem;flex-wrap:wrap}
+.calendar-help{margin-top:.7rem;color:#5a665a;font-size:.92rem}
+.badge{display:inline-block;padding:.22rem .58rem;border-radius:999px;font-weight:600;font-size:.88rem}
+.badge.ok{background:#ddf6e8;color:#17613d}
+.badge.warn{background:#ffefcf;color:#7b4e00}
+.badge.no{background:#ffe1e1;color:#8b1b1b}
+.contact-form{display:grid;gap:.7rem;background:#fff;padding:1rem;border-radius:12px}
+.hp-field{position:absolute;left:-9999px;opacity:0;pointer-events:none}
+.consent{display:flex;gap:.6rem;align-items:flex-start;font-size:.92rem;color:#2e3a2e}
+.consent input{margin-top:.18rem;width:auto}
+.contact-feedback{min-height:1.4rem;font-size:.92rem;font-weight:600}
+.contact-feedback.ok{color:#17613d}
+.contact-feedback.err{color:#8b1b1b}
+.privacy-note{margin-top:.8rem;font-size:.9rem;color:#5b675b}
+.contact-links{margin-top:.9rem}
+.whatsapp-link{background:#25d366;color:#083b1d}
+.whatsapp-float{position:fixed;right:1rem;bottom:1rem;background:#25d366;color:#083b1d;text-decoration:none;font-weight:700;padding:.75rem 1rem;border-radius:999px;box-shadow:0 10px 20px rgba(0,0,0,.2);z-index:30}
+input,textarea{padding:.7rem;border:1px solid #d6ddd3;border-radius:10px}
