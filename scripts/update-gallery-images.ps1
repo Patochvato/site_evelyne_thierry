@@ -1,10 +1,11 @@
 param(
-  [string]$ProjectRoot = (Get-Location).Path
+  [string]$ProjectRoot = (Get-Location).Path,
+  [string]$PhotosFolder = "Photos"
 )
 
 $ErrorActionPreference = "Stop"
 
-$photosDir = Join-Path $ProjectRoot "Photos"
+$photosDir = Join-Path $ProjectRoot $PhotosFolder
 $mainJsPath = Join-Path $ProjectRoot "js/main.js"
 
 if (-not (Test-Path $photosDir)) {
@@ -26,7 +27,7 @@ $images = Get-ChildItem -Path $photosDir -Recurse -File |
   }
 
 if ($images.Count -eq 0) {
-  throw "Aucune image trouvee dans Photos"
+  throw "Aucune image trouvee dans $PhotosFolder"
 }
 
 $escaped = $images | ForEach-Object {

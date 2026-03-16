@@ -7,38 +7,47 @@ if (toggleBtn && navLinks) {
 }
 
 const galleryImages = [
-  "Photos/Arrivée/1692878400022.jpg",
-  "Photos/Arrivée/Arrivée portillon.jpg",
-  "Photos/Arrivée/Arrivée.jpg",
-  "Photos/Arrivée/IMG20251001164748.jpg",
-  "Photos/Arrivée/Montée.jpeg",
-  "Photos/Arrivée/Montée.jpg",
-  "Photos/Arrivée/Virage.jpg",
-  "Photos/Chambre/coucher soleil chambre.jpg",
-  "Photos/Chambre/Fenêtre.jpg",
-  "Photos/Chambre/photo4.jpg",
-  "Photos/Chambre/Porte.jpg",
-  "Photos/Chambre/Vue du lit.jpg",
-  "Photos/Cuisine douche/Cuisine côté mer.jpg",
-  "Photos/Cuisine douche/Cuisine côté mer1.jpg",
-  "Photos/Cuisine douche/Cuisine côté Montagne.jpg",
-  "Photos/Cuisine douche/Cuisine Entrée.jpg",
-  "Photos/Cuisine douche/Cuisine Evier.jpg",
-  "Photos/Cuisine douche/Douche Entrée.jpg",
-  "Photos/Cuisine douche/Douche.jpg",
-  "Photos/Cuisine douche/photo3.jpg",
-  "Photos/Jardin/Choune.jpg",
-  "Photos/Jardin/photo_accueil.jpg",
-  "Photos/Jardin/Vu de la cuisine.jpg",
-  "Photos/Piscine/1737977482213.jpg",
-  "Photos/Piscine/1737977482221.jpg",
-  "Photos/Piscine/Escalier.jpg",
-  "Photos/Piscine/photo2.jpg",
-  "Photos/Terrasse/1692878584817.jpg",
-  "Photos/Terrasse/photo1.jpg",
-  "Photos/Toilettes/1610615301390.jpg",
-  "Photos/Toilettes/1692878585012.jpg",
-  "Photos/Toilettes/1692878585027.jpg"
+  "Photos_web/Animaux/2025-05-24 16.14.15.jpg",
+  "Photos_web/Animaux/chenille sphinx (2).JPG",
+  "Photos_web/Animaux/Choune.jpg",
+  "Photos_web/Animaux/Crapaud.jpg",
+  "Photos_web/Animaux/Papillon.jpg",
+  "Photos_web/Chambre/coucher soleil chambre.jpg",
+  "Photos_web/Chambre/Escalier.jpg",
+  "Photos_web/Chambre/Fenêtre.jpg",
+  "Photos_web/Chambre/Porte.jpg",
+  "Photos_web/Chambre/Vue du lit.jpg",
+  "Photos_web/Cuisine douche/Cuisine côté mer.jpg",
+  "Photos_web/Cuisine douche/Cuisine côté mer1.jpg",
+  "Photos_web/Cuisine douche/Cuisine côté Montagne.jpg",
+  "Photos_web/Cuisine douche/Cuisine Entrée.jpg",
+  "Photos_web/Cuisine douche/Douche Entrée.jpg",
+  "Photos_web/Cuisine douche/Douche.jpg",
+  "Photos_web/Cuisine douche/Extérieur douche.jpg",
+  "Photos_web/Cuisine douche/IMG20260315140502.jpg",
+  "Photos_web/Jardin/IMG20260314095649.jpg",
+  "Photos_web/Jardin/IMG20260314100117.jpg",
+  "Photos_web/Jardin/IMG20260314100246.jpg",
+  "Photos_web/Jardin/IMG20260314100337.jpg",
+  "Photos_web/Jardin/IMG20260314100356.jpg",
+  "Photos_web/Jardin/IMG20260314100512.jpg",
+  "Photos_web/Jardin/IMG20260314174722.jpg",
+  "Photos_web/Jardin/IMG20260314174909.jpg",
+  "Photos_web/Jardin/IMG20260314175050.jpg",
+  "Photos_web/Jardin/IMG20260314182537.jpg",
+  "Photos_web/Jardin/IMG20260314182729.jpg",
+  "Photos_web/Jardin/IMG20260315115532.jpg",
+  "Photos_web/Jardin/photo_accueil.jpg",
+  "Photos_web/Jardin/Vu de la cuisine.jpg",
+  "Photos_web/Jardin/Vue vers la piscine.jpg",
+  "Photos_web/Piscine/1737977482213.jpg",
+  "Photos_web/Piscine/1737977482221.jpg",
+  "Photos_web/Piscine/IMG20260314182353.jpg",
+  "Photos_web/Piscine/IMG20260314182441.jpg",
+  "Photos_web/Piscine/IMG20260314182549.jpg",
+  "Photos_web/Piscine/IMG20260315140522.jpg",
+  "Photos_web/Terrasse/IMG20260314095423.jpg",
+  "Photos_web/Terrasse/IMG20260314183437.jpg"
 ];
 
 const slidesContainer = document.querySelector("#slides");
@@ -71,6 +80,7 @@ const prevBtn = document.querySelector(".prev");
 const nextBtn = document.querySelector(".next");
 const slider = document.querySelector(".slider");
 const dotsContainer = document.querySelector("#slider-dots");
+const randomMode = true;
 let current = 0;
 let autoTimer = null;
 let touchStartX = 0;
@@ -90,13 +100,28 @@ function goToSlide(index) {
   showSlide(current);
 }
 
+function getRandomIndex(excludeIndex, total) {
+  if (total <= 1) {
+    return 0;
+  }
+  let nextIndex = Math.floor(Math.random() * total);
+  while (nextIndex === excludeIndex) {
+    nextIndex = Math.floor(Math.random() * total);
+  }
+  return nextIndex;
+}
+
 function startAutoPlay() {
   if (slides.length < 2) {
     return;
   }
   stopAutoPlay();
   autoTimer = setInterval(() => {
-    goToSlide(current + 1);
+    if (randomMode) {
+      goToSlide(getRandomIndex(current, slides.length));
+    } else {
+      goToSlide(current + 1);
+    }
   }, 5000);
 }
 
@@ -123,9 +148,20 @@ if (slides.length){
     });
   }
 
+  if (randomMode) {
+    current = getRandomIndex(-1, slides.length);
+  }
+
   showSlide(current);
   prevBtn?.addEventListener("click", () => { goToSlide(current - 1); startAutoPlay(); });
-  nextBtn?.addEventListener("click", () => { goToSlide(current + 1); startAutoPlay(); });
+  nextBtn?.addEventListener("click", () => {
+    if (randomMode) {
+      goToSlide(getRandomIndex(current, slides.length));
+    } else {
+      goToSlide(current + 1);
+    }
+    startAutoPlay();
+  });
 
   slider?.addEventListener("mouseenter", stopAutoPlay);
   slider?.addEventListener("mouseleave", startAutoPlay);
@@ -137,7 +173,11 @@ if (slides.length){
     const delta = touchEndX - touchStartX;
     if (Math.abs(delta) > 40) {
       if (delta < 0) {
-        goToSlide(current + 1);
+        if (randomMode) {
+          goToSlide(getRandomIndex(current, slides.length));
+        } else {
+          goToSlide(current + 1);
+        }
       } else {
         goToSlide(current - 1);
       }
@@ -147,7 +187,11 @@ if (slides.length){
 
   slider?.addEventListener("keydown", (event) => {
     if (event.key === "ArrowRight") {
-      goToSlide(current + 1);
+      if (randomMode) {
+        goToSlide(getRandomIndex(current, slides.length));
+      } else {
+        goToSlide(current + 1);
+      }
       startAutoPlay();
     }
     if (event.key === "ArrowLeft") {
@@ -450,4 +494,7 @@ async function initContactForm() {
 }
 
 initContactForm();
+
+
+
 

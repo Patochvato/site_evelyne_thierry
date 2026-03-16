@@ -2,7 +2,7 @@
   .grid-2{grid-template-columns:1fr}
   .calendar-cards{grid-template-columns:1fr}
   .hero{padding-bottom:0}
-  .hero-content{bottom:4vh;transform:translateX(-50%)}
+  .hero-bottom-content{bottom:4vh}
   .nav-toggle{display:block}
   .nav-links{
     display:none;flex-direction:column;position:absolute;right:4%;top:68px;
