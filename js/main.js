@@ -155,11 +155,7 @@ if (slides.length){
   showSlide(current);
   prevBtn?.addEventListener("click", () => { goToSlide(current - 1); startAutoPlay(); });
   nextBtn?.addEventListener("click", () => {
-    if (randomMode) {
-      goToSlide(getRandomIndex(current, slides.length));
-    } else {
-      goToSlide(current + 1);
-    }
+    goToSlide(current + 1);
     startAutoPlay();
   });
 
@@ -173,11 +169,7 @@ if (slides.length){
     const delta = touchEndX - touchStartX;
     if (Math.abs(delta) > 40) {
       if (delta < 0) {
-        if (randomMode) {
-          goToSlide(getRandomIndex(current, slides.length));
-        } else {
-          goToSlide(current + 1);
-        }
+        goToSlide(current + 1);
       } else {
         goToSlide(current - 1);
       }
@@ -187,11 +179,7 @@ if (slides.length){
 
   slider?.addEventListener("keydown", (event) => {
     if (event.key === "ArrowRight") {
-      if (randomMode) {
-        goToSlide(getRandomIndex(current, slides.length));
-      } else {
-        goToSlide(current + 1);
-      }
+      goToSlide(current + 1);
       startAutoPlay();
     }
     if (event.key === "ArrowLeft") {
