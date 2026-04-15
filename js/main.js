@@ -439,6 +439,66 @@ async function initAvailabilityCalendar() {
 
 initAvailabilityCalendar();
 
+// ========================================
+// Google Analytics - Suivi des événements
+// ========================================
+
+/**
+ * Envoie un événement à Google Analytics
+ * @param {string} eventName - Nom de l'événement
+ * @param {object} params - Paramètres additionnels
+ */
+function trackEvent(eventName, params = {}) {
+  if (typeof gtag === 'function') {
+    gtag('event', eventName, params);
+  }
+}
+
+// Suivi des clics sur WhatsApp (bouton section contact)
+document.querySelectorAll('.whatsapp-link').forEach(btn => {
+  btn.addEventListener('click', () => {
+    trackEvent('contact_whatsapp', {
+      event_category: 'engagement',
+      event_label: 'WhatsApp - Section Contact'
+    });
+  });
+});
+
+// Suivi du clic sur WhatsApp (bouton flottant)
+const whatsappFloat = document.querySelector('.whatsapp-float');
+if (whatsappFloat) {
+  whatsappFloat.addEventListener('click', () => {
+    trackEvent('contact_whatsapp_float', {
+      event_category: 'engagement',
+      event_label: 'WhatsApp - Bouton Flottant'
+    });
+  });
+}
+
+// Suivi des clics sur Airbnb
+document.querySelectorAll('.airbnb-link').forEach(btn => {
+  btn.addEventListener('click', () => {
+    trackEvent('click_airbnb', {
+      event_category: 'engagement',
+      event_label: 'Lien Airbnb'
+    });
+  });
+});
+
+// Suivi du clic sur le bouton "Réserver" du hero
+const heroReserveBtn = document.querySelector('.hero .btn');
+if (heroReserveBtn) {
+  heroReserveBtn.addEventListener('click', () => {
+    trackEvent('click_reserver_hero', {
+      event_category: 'engagement',
+      event_label: 'Bouton Réserver - Hero'
+    });
+  });
+}
+
+// ========================================
+// Formulaire de contact avec tracking
+// ========================================
 async function initContactForm() {
   const form = document.querySelector("#contact-form");
   const feedback = document.querySelector("#contact-feedback");
@@ -450,6 +510,13 @@ async function initContactForm() {
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
+    
+    // Tracking de la tentative d'envoi
+    trackEvent('form_submit_attempt', {
+      event_category: 'engagement',
+      event_label: 'Formulaire de Contact'
+    });
+
     feedback.textContent = "Envoi en cours...";
     feedback.className = "contact-feedback";
     submitBtn.disabled = true;
@@ -469,10 +536,22 @@ async function initContactForm() {
         throw new Error("Echec de l'envoi");
       }
 
+      // Tracking du succès
+      trackEvent('form_submit_success', {
+        event_category: 'conversion',
+        event_label: 'Formulaire de Contact - Succès'
+      });
+
       feedback.textContent = "Message envoye avec succes. Nous vous repondrons rapidement.";
       feedback.classList.add("ok");
       form.reset();
     } catch (error) {
+      // Tracking de l'échec
+      trackEvent('form_submit_error', {
+        event_category: 'error',
+        event_label: 'Formulaire de Contact - Erreur'
+      });
+
       feedback.textContent = "Envoi impossible pour le moment. Vous pouvez nous contacter via WhatsApp.";
       feedback.classList.add("err");
     } finally {
@@ -482,7 +561,4 @@ async function initContactForm() {
 }
 
 initContactForm();
-
-
-
 
